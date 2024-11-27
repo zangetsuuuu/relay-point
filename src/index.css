@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Parkinsans';
+    src: url('@/assets/fonts/Parkinsans-Variable.woff2') format('woff2'),
+      url('@/assets/fonts/Parkinsans-Variable.woff') format('woff'),
+      url('@/assets/fonts/Parkinsans-Variable.otf') format('opentype'),
+      url('@/assets/fonts/Parkinsans-Variable.ttf') format('truetype');
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+  }
+  body {
+    @apply font-parkinsans sm:min-h-screen min-h-svh leading-relaxed;
+  }
+}
