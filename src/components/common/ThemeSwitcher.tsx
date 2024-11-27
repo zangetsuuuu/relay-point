@@ -1,33 +1,36 @@
 import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { Button } from '@nextui-org/button';
+import { Tooltip } from '@nextui-org/tooltip';
 import { Sun, Moon } from '@phosphor-icons/react';
 
 export const ThemeSwitcher = () => {
-  const [mounted, setMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    setMounted(true);
+    setIsMounted(true);
   }, []);
 
-  if (!mounted) return null;
+  if (!isMounted) return null;
 
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
+  const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
+
+  const icon = theme === 'light' ? <Moon size={16} /> : <Sun size={16} />;
+  const tooltipContent = `Turn ${theme === 'light' ? 'off' : 'on'} the light`;
 
   return (
-    <>
+    <Tooltip content={tooltipContent} placement="bottom" size="sm" radius="sm" closeDelay={100}>
       <Button
-        aria-label="Theme Switcher"
+        aria-label="Toggle Theme"
         variant="light"
+        size='sm'
         radius="sm"
         isIconOnly
         onClick={toggleTheme}
       >
-        {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+        {icon}
       </Button>
-    </>
+    </Tooltip>
   );
 };
