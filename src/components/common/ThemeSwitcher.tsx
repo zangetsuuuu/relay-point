@@ -16,7 +16,7 @@ export const ThemeSwitcher = () => {
 
   const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
 
-  const icon = theme === 'light' ? <Moon size={16} /> : <Sun size={16} />;
+  const icon = theme === 'light' ? <Sun size={16} /> : <Moon size={16} />;
   const tooltipContent = `Turn ${theme === 'light' ? 'off' : 'on'} the light`;
 
   return (
