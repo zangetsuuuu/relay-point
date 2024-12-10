@@ -2,6 +2,7 @@ import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import type { LayoutProps } from '@/types';
 import { Header, Footer } from '@/components/layout';
+import { Breadcrumbs } from '@/components/common';
 
 export const Layout = ({
   title = import.meta.env.VITE_APP_TITLE,
@@ -21,9 +22,12 @@ export const Layout = ({
         <meta property="og:url" content={url} />
         <meta property="og:description" content={description} />
       </Helmet>
-      <div className="container relative max-w-screen-sm mx-auto min-h-svh sm:min-h-screen">
+      <div className="container flex flex-col max-w-screen-sm mx-auto min-h-svh sm:min-h-screen">
         <Header />
-        <main className='p-6'>{children}</main>
+        <main className="flex-grow p-6 space-y-6">
+          {pathname !== '/' && <Breadcrumbs />}
+          {children}
+        </main>
         <Footer />
       </div>
     </HelmetProvider>
